@@ -1,11 +1,12 @@
 import kotlin.random.Random
+import kotlinx.coroutines.*
 
 class Millitary(name: String) : Plane(name) {
-    open val pointD: String = ""
-    open val pointApp: String = ""
-    open val date: String = ""
-    open val timeD: Int = 0
-    open val travelTime: Int = 0
+    open val pointD: String = "пункт А"
+    open val pointApp: String = "пункт Б"
+    open val date: String = "12.10.2020"
+    open val timeD: Int = 14
+    open val travelTime: Int = 3
 
     override fun Info(){
         println("Самолёт ${name}\n" +
@@ -19,5 +20,16 @@ class Millitary(name: String) : Plane(name) {
         var totalWeightPers = persCount * rnd
         var totalWeight = totalWeightPers + baggWeight
         println("Полезная нагрузка: ${totalWeight}")
+    }
+
+    override fun TakeOff() {
+        println("Подготовка к взлёту...")
+        runBlocking { delay(2000) }
+        println("Самолёт ${name} взлетел")
+    }
+
+    override fun Resist() {
+        val rnd = Random.nextInt(0, 100)
+        println("сопротивление - ${rnd}%")
     }
 }
